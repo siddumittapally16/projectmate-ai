@@ -68,20 +68,20 @@ function Profile() {
     const { error } = await supabase
       .from("profiles")
       .update({
-        full_name: form["full_name"],
-        college: form["college"],
-        degree: form["degree"],
-        branch: form["branch"],
-        semester: form["semester"],
+        full_name: form["full_name"] ?? "",
+        college: form["college"] ?? "",
+        degree: form["degree"] ?? "",
+        branch: form["branch"] ?? "",
+        semester: form["semester"] ?? "",
         skills: (form["skills"] ?? "").split(",").map((s) => s.trim()).filter(Boolean),
         interests: (form["interests"] ?? "").split(",").map((s) => s.trim()).filter(Boolean),
-        career_goal: form["career_goal"],
+        career_goal: form["career_goal"] ?? "",
         team_size: Number(form["team_size"]) || 1,
         daily_hours: Number(form["daily_hours"]) || 2,
         available_weeks: Number(form["available_weeks"]) || 12,
-        budget: form["budget"],
-        experience_level: form["experience_level"],
-        hardware: form["hardware"],
+        budget: form["budget"] ?? "",
+        experience_level: form["experience_level"] ?? "",
+        hardware: form["hardware"] ?? "",
       })
       .eq("id", u.user!.id);
     setSaving(false);
