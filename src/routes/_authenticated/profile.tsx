@@ -52,10 +52,11 @@ function Profile() {
       interests: (profile.interests ?? []).join(", "),
       career_goal: profile.career_goal ?? "",
       team_size: String(profile.team_size ?? ""),
-      time_available: profile.time_available ?? "",
+      daily_hours: String(profile.daily_hours ?? ""),
+      available_weeks: String(profile.available_weeks ?? ""),
       budget: profile.budget ?? "",
       experience_level: profile.experience_level ?? "",
-      hardware_access: profile.hardware_access ?? "",
+      hardware: profile.hardware ?? "",
     });
   }, [profile]);
 
@@ -76,10 +77,11 @@ function Profile() {
         interests: (form["interests"] ?? "").split(",").map((s) => s.trim()).filter(Boolean),
         career_goal: form["career_goal"],
         team_size: Number(form["team_size"]) || 1,
-        time_available: form["time_available"],
+        daily_hours: Number(form["daily_hours"]) || 2,
+        available_weeks: Number(form["available_weeks"]) || 12,
         budget: form["budget"],
         experience_level: form["experience_level"],
-        hardware_access: form["hardware_access"],
+        hardware: form["hardware"],
       })
       .eq("id", u.user!.id);
     setSaving(false);
@@ -99,10 +101,11 @@ function Profile() {
     ["semester", "Semester"],
     ["career_goal", "Career goal"],
     ["team_size", "Team size"],
-    ["time_available", "Time available"],
+    ["daily_hours", "Hours available per day"],
+    ["available_weeks", "Weeks until deadline"],
     ["budget", "Budget"],
     ["experience_level", "Experience level"],
-    ["hardware_access", "Hardware access"],
+    ["hardware", "Hardware access"],
   ];
 
   return (
