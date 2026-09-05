@@ -14,7 +14,412 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      ai_recommendations: {
+        Row: {
+          created_at: string
+          id: string
+          kind: string
+          payload: Json
+          project_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          kind?: string
+          payload: Json
+          project_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          kind?: string
+          payload?: Json
+          project_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ai_recommendations_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      chat_messages: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          project_id: string
+          role: string
+          user_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          project_id: string
+          role: string
+          user_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          project_id?: string
+          role?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "chat_messages_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      code_sessions: {
+        Row: {
+          created_at: string
+          id: string
+          language: string | null
+          mode: string
+          project_id: string
+          prompt: string
+          result: Json | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          language?: string | null
+          mode?: string
+          project_id: string
+          prompt?: string
+          result?: Json | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          language?: string | null
+          mode?: string
+          project_id?: string
+          prompt?: string
+          result?: Json | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "code_sessions_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          available_weeks: number
+          branch: string | null
+          budget: string | null
+          career_goal: string | null
+          college: string | null
+          created_at: string
+          daily_hours: number
+          degree: string | null
+          experience_level: string | null
+          full_name: string
+          hardware: string | null
+          id: string
+          interests: string[]
+          onboarded: boolean
+          semester: string | null
+          skills: string[]
+          team_size: number
+          updated_at: string
+        }
+        Insert: {
+          available_weeks?: number
+          branch?: string | null
+          budget?: string | null
+          career_goal?: string | null
+          college?: string | null
+          created_at?: string
+          daily_hours?: number
+          degree?: string | null
+          experience_level?: string | null
+          full_name?: string
+          hardware?: string | null
+          id: string
+          interests?: string[]
+          onboarded?: boolean
+          semester?: string | null
+          skills?: string[]
+          team_size?: number
+          updated_at?: string
+        }
+        Update: {
+          available_weeks?: number
+          branch?: string | null
+          budget?: string | null
+          career_goal?: string | null
+          college?: string | null
+          created_at?: string
+          daily_hours?: number
+          degree?: string | null
+          experience_level?: string | null
+          full_name?: string
+          hardware?: string | null
+          id?: string
+          interests?: string[]
+          onboarded?: boolean
+          semester?: string | null
+          skills?: string[]
+          team_size?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      project_features: {
+        Row: {
+          accepted: boolean
+          complexity: string | null
+          created_at: string
+          dependencies: string[]
+          description: string | null
+          effort: string | null
+          id: string
+          name: string
+          priority: string | null
+          project_id: string
+          tier: string
+          user_id: string
+        }
+        Insert: {
+          accepted?: boolean
+          complexity?: string | null
+          created_at?: string
+          dependencies?: string[]
+          description?: string | null
+          effort?: string | null
+          id?: string
+          name: string
+          priority?: string | null
+          project_id: string
+          tier?: string
+          user_id: string
+        }
+        Update: {
+          accepted?: boolean
+          complexity?: string | null
+          created_at?: string
+          dependencies?: string[]
+          description?: string | null
+          effort?: string | null
+          id?: string
+          name?: string
+          priority?: string | null
+          project_id?: string
+          tier?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "project_features_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      project_ideas: {
+        Row: {
+          created_at: string
+          id: string
+          payload: Json
+          saved: boolean
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          payload: Json
+          saved?: boolean
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          payload?: Json
+          saved?: boolean
+          user_id?: string
+        }
+        Relationships: []
+      }
+      projects: {
+        Row: {
+          created_at: string
+          current_phase: string | null
+          deadline: string | null
+          difficulty: string | null
+          domain: string | null
+          duration: string | null
+          evaluation: Json | null
+          id: string
+          is_active: boolean
+          problem_statement: string | null
+          solution: string | null
+          tech_stack: Json | null
+          technologies: string[]
+          title: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          current_phase?: string | null
+          deadline?: string | null
+          difficulty?: string | null
+          domain?: string | null
+          duration?: string | null
+          evaluation?: Json | null
+          id?: string
+          is_active?: boolean
+          problem_statement?: string | null
+          solution?: string | null
+          tech_stack?: Json | null
+          technologies?: string[]
+          title: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          current_phase?: string | null
+          deadline?: string | null
+          difficulty?: string | null
+          domain?: string | null
+          duration?: string | null
+          evaluation?: Json | null
+          id?: string
+          is_active?: boolean
+          problem_statement?: string | null
+          solution?: string | null
+          tech_stack?: Json | null
+          technologies?: string[]
+          title?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      roadmap_phases: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          order_index: number
+          project_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          order_index?: number
+          project_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          order_index?: number
+          project_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "roadmap_phases_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tasks: {
+        Row: {
+          created_at: string
+          dependencies: string[]
+          description: string | null
+          due_date: string | null
+          effort: string | null
+          id: string
+          order_index: number
+          phase_id: string | null
+          priority: string
+          project_id: string
+          status: string
+          title: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          dependencies?: string[]
+          description?: string | null
+          due_date?: string | null
+          effort?: string | null
+          id?: string
+          order_index?: number
+          phase_id?: string | null
+          priority?: string
+          project_id: string
+          status?: string
+          title: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          dependencies?: string[]
+          description?: string | null
+          due_date?: string | null
+          effort?: string | null
+          id?: string
+          order_index?: number
+          phase_id?: string | null
+          priority?: string
+          project_id?: string
+          status?: string
+          title?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tasks_phase_id_fkey"
+            columns: ["phase_id"]
+            isOneToOne: false
+            referencedRelation: "roadmap_phases"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tasks_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
