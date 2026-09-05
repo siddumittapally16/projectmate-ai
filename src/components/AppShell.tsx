@@ -1,4 +1,5 @@
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useQuery } from "@tanstack/react-query";
 import { useState, type ReactNode } from "react";
 import {
@@ -62,7 +63,7 @@ export function AppShell({ children }: { children: ReactNode }) {
 
   const signOut = async () => {
     await supabase.auth.signOut();
-    navigate({ to: "/login" });
+    navigate({ to: "/login" as any });
   };
 
   const nav = (
@@ -73,7 +74,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         return (
           <Link
             key={l.to}
-            to={l.to}
+            to={l.to as any}
             onClick={() => setOpen(false)}
             className={cn(
               "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
@@ -94,7 +95,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen bg-background">
       <aside className="fixed inset-y-0 left-0 z-40 hidden w-64 flex-col border-r border-sidebar-border bg-sidebar p-4 lg:flex">
-        <Link to="/dashboard" className="mb-6 flex items-center gap-2 px-2">
+        <Link to={"/dashboard" as any} className="mb-6 flex items-center gap-2 px-2">
           <span className="grid size-8 place-items-center rounded-lg bg-primary font-display text-sm font-bold text-primary-foreground">
             PM
           </span>
