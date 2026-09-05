@@ -18,7 +18,9 @@ import { Route as AuthenticatedGenerateRouteImport } from './routes/_authenticat
 import { Route as AuthenticatedOnboardingRouteImport } from './routes/_authenticated/onboarding'
 import { Route as AuthenticatedProjectsIndexRouteImport } from './routes/_authenticated/projects.index'
 import { Route as AuthenticatedProjectsIdIndexRouteImport } from './routes/_authenticated/projects.$id.index'
+import { Route as AuthenticatedProjectsIdCodeRouteImport } from './routes/_authenticated/projects.$id.code'
 import { Route as AuthenticatedProjectsIdFeaturesRouteImport } from './routes/_authenticated/projects.$id.features'
+import { Route as AuthenticatedProjectsIdMentorRouteImport } from './routes/_authenticated/projects.$id.mentor'
 import { Route as AuthenticatedProjectsIdRoadmapRouteImport } from './routes/_authenticated/projects.$id.roadmap'
 import { Route as AuthenticatedProjectsIdTasksRouteImport } from './routes/_authenticated/projects.$id.tasks'
 
@@ -68,10 +70,22 @@ const AuthenticatedProjectsIdIndexRoute =
     path: '/projects/$id/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedProjectsIdCodeRoute =
+  AuthenticatedProjectsIdCodeRouteImport.update({
+    id: '/projects/$id/code',
+    path: '/projects/$id/code',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedProjectsIdFeaturesRoute =
   AuthenticatedProjectsIdFeaturesRouteImport.update({
     id: '/projects/$id/features',
     path: '/projects/$id/features',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedProjectsIdMentorRoute =
+  AuthenticatedProjectsIdMentorRouteImport.update({
+    id: '/projects/$id/mentor',
+    path: '/projects/$id/mentor',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedProjectsIdRoadmapRoute =
@@ -95,7 +109,9 @@ export interface FileRoutesByFullPath {
   '/generate': typeof AuthenticatedGenerateRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
   '/projects/': typeof AuthenticatedProjectsIndexRoute
+  '/projects/$id/code': typeof AuthenticatedProjectsIdCodeRoute
   '/projects/$id/features': typeof AuthenticatedProjectsIdFeaturesRoute
+  '/projects/$id/mentor': typeof AuthenticatedProjectsIdMentorRoute
   '/projects/$id/roadmap': typeof AuthenticatedProjectsIdRoadmapRoute
   '/projects/$id/tasks': typeof AuthenticatedProjectsIdTasksRoute
   '/projects/$id/': typeof AuthenticatedProjectsIdIndexRoute
@@ -108,7 +124,9 @@ export interface FileRoutesByTo {
   '/generate': typeof AuthenticatedGenerateRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
   '/projects': typeof AuthenticatedProjectsIndexRoute
+  '/projects/$id/code': typeof AuthenticatedProjectsIdCodeRoute
   '/projects/$id/features': typeof AuthenticatedProjectsIdFeaturesRoute
+  '/projects/$id/mentor': typeof AuthenticatedProjectsIdMentorRoute
   '/projects/$id/roadmap': typeof AuthenticatedProjectsIdRoadmapRoute
   '/projects/$id/tasks': typeof AuthenticatedProjectsIdTasksRoute
   '/projects/$id': typeof AuthenticatedProjectsIdIndexRoute
@@ -123,7 +141,9 @@ export interface FileRoutesById {
   '/_authenticated/generate': typeof AuthenticatedGenerateRoute
   '/_authenticated/onboarding': typeof AuthenticatedOnboardingRoute
   '/_authenticated/projects/': typeof AuthenticatedProjectsIndexRoute
+  '/_authenticated/projects/$id/code': typeof AuthenticatedProjectsIdCodeRoute
   '/_authenticated/projects/$id/features': typeof AuthenticatedProjectsIdFeaturesRoute
+  '/_authenticated/projects/$id/mentor': typeof AuthenticatedProjectsIdMentorRoute
   '/_authenticated/projects/$id/roadmap': typeof AuthenticatedProjectsIdRoadmapRoute
   '/_authenticated/projects/$id/tasks': typeof AuthenticatedProjectsIdTasksRoute
   '/_authenticated/projects/$id/': typeof AuthenticatedProjectsIdIndexRoute
@@ -138,7 +158,9 @@ export interface FileRouteTypes {
     | '/generate'
     | '/onboarding'
     | '/projects/'
+    | '/projects/$id/code'
     | '/projects/$id/features'
+    | '/projects/$id/mentor'
     | '/projects/$id/roadmap'
     | '/projects/$id/tasks'
     | '/projects/$id/'
@@ -151,7 +173,9 @@ export interface FileRouteTypes {
     | '/generate'
     | '/onboarding'
     | '/projects'
+    | '/projects/$id/code'
     | '/projects/$id/features'
+    | '/projects/$id/mentor'
     | '/projects/$id/roadmap'
     | '/projects/$id/tasks'
     | '/projects/$id'
@@ -165,7 +189,9 @@ export interface FileRouteTypes {
     | '/_authenticated/generate'
     | '/_authenticated/onboarding'
     | '/_authenticated/projects/'
+    | '/_authenticated/projects/$id/code'
     | '/_authenticated/projects/$id/features'
+    | '/_authenticated/projects/$id/mentor'
     | '/_authenticated/projects/$id/roadmap'
     | '/_authenticated/projects/$id/tasks'
     | '/_authenticated/projects/$id/'
@@ -243,11 +269,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedProjectsIdIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/projects/$id/code': {
+      id: '/_authenticated/projects/$id/code'
+      path: '/projects/$id/code'
+      fullPath: '/projects/$id/code'
+      preLoaderRoute: typeof AuthenticatedProjectsIdCodeRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/projects/$id/features': {
       id: '/_authenticated/projects/$id/features'
       path: '/projects/$id/features'
       fullPath: '/projects/$id/features'
       preLoaderRoute: typeof AuthenticatedProjectsIdFeaturesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/projects/$id/mentor': {
+      id: '/_authenticated/projects/$id/mentor'
+      path: '/projects/$id/mentor'
+      fullPath: '/projects/$id/mentor'
+      preLoaderRoute: typeof AuthenticatedProjectsIdMentorRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/projects/$id/roadmap': {
@@ -272,7 +312,9 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedGenerateRoute: typeof AuthenticatedGenerateRoute
   AuthenticatedOnboardingRoute: typeof AuthenticatedOnboardingRoute
   AuthenticatedProjectsIndexRoute: typeof AuthenticatedProjectsIndexRoute
+  AuthenticatedProjectsIdCodeRoute: typeof AuthenticatedProjectsIdCodeRoute
   AuthenticatedProjectsIdFeaturesRoute: typeof AuthenticatedProjectsIdFeaturesRoute
+  AuthenticatedProjectsIdMentorRoute: typeof AuthenticatedProjectsIdMentorRoute
   AuthenticatedProjectsIdRoadmapRoute: typeof AuthenticatedProjectsIdRoadmapRoute
   AuthenticatedProjectsIdTasksRoute: typeof AuthenticatedProjectsIdTasksRoute
   AuthenticatedProjectsIdIndexRoute: typeof AuthenticatedProjectsIdIndexRoute
@@ -283,7 +325,9 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedGenerateRoute: AuthenticatedGenerateRoute,
   AuthenticatedOnboardingRoute: AuthenticatedOnboardingRoute,
   AuthenticatedProjectsIndexRoute: AuthenticatedProjectsIndexRoute,
+  AuthenticatedProjectsIdCodeRoute: AuthenticatedProjectsIdCodeRoute,
   AuthenticatedProjectsIdFeaturesRoute: AuthenticatedProjectsIdFeaturesRoute,
+  AuthenticatedProjectsIdMentorRoute: AuthenticatedProjectsIdMentorRoute,
   AuthenticatedProjectsIdRoadmapRoute: AuthenticatedProjectsIdRoadmapRoute,
   AuthenticatedProjectsIdTasksRoute: AuthenticatedProjectsIdTasksRoute,
   AuthenticatedProjectsIdIndexRoute: AuthenticatedProjectsIdIndexRoute,
