@@ -164,13 +164,13 @@ function Onboarding() {
         <section className="surface-card p-6">
           <h2 className="text-lg font-semibold">Student Information</h2>
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
-            {[
+            {([
               ["full_name", "Full Name"],
               ["college", "College"],
               ["degree", "Degree"],
               ["branch", "Branch"],
               ["semester", "Semester"],
-            ].map(([key, label]) => (
+            ] as const).map(([key, label]) => (
               <div key={key} className="space-y-2">
                 <Label htmlFor={key}>{label}</Label>
                 <Input
