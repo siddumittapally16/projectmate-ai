@@ -20,6 +20,7 @@ import { Route as AuthenticatedProjectsIndexRouteImport } from './routes/_authen
 import { Route as AuthenticatedProjectsIdIndexRouteImport } from './routes/_authenticated/projects.$id.index'
 import { Route as AuthenticatedProjectsIdFeaturesRouteImport } from './routes/_authenticated/projects.$id.features'
 import { Route as AuthenticatedProjectsIdRoadmapRouteImport } from './routes/_authenticated/projects.$id.roadmap'
+import { Route as AuthenticatedProjectsIdTasksRouteImport } from './routes/_authenticated/projects.$id.tasks'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -79,6 +80,12 @@ const AuthenticatedProjectsIdRoadmapRoute =
     path: '/projects/$id/roadmap',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedProjectsIdTasksRoute =
+  AuthenticatedProjectsIdTasksRouteImport.update({
+    id: '/projects/$id/tasks',
+    path: '/projects/$id/tasks',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -90,6 +97,7 @@ export interface FileRoutesByFullPath {
   '/projects/': typeof AuthenticatedProjectsIndexRoute
   '/projects/$id/features': typeof AuthenticatedProjectsIdFeaturesRoute
   '/projects/$id/roadmap': typeof AuthenticatedProjectsIdRoadmapRoute
+  '/projects/$id/tasks': typeof AuthenticatedProjectsIdTasksRoute
   '/projects/$id/': typeof AuthenticatedProjectsIdIndexRoute
 }
 export interface FileRoutesByTo {
@@ -102,6 +110,7 @@ export interface FileRoutesByTo {
   '/projects': typeof AuthenticatedProjectsIndexRoute
   '/projects/$id/features': typeof AuthenticatedProjectsIdFeaturesRoute
   '/projects/$id/roadmap': typeof AuthenticatedProjectsIdRoadmapRoute
+  '/projects/$id/tasks': typeof AuthenticatedProjectsIdTasksRoute
   '/projects/$id': typeof AuthenticatedProjectsIdIndexRoute
 }
 export interface FileRoutesById {
@@ -116,6 +125,7 @@ export interface FileRoutesById {
   '/_authenticated/projects/': typeof AuthenticatedProjectsIndexRoute
   '/_authenticated/projects/$id/features': typeof AuthenticatedProjectsIdFeaturesRoute
   '/_authenticated/projects/$id/roadmap': typeof AuthenticatedProjectsIdRoadmapRoute
+  '/_authenticated/projects/$id/tasks': typeof AuthenticatedProjectsIdTasksRoute
   '/_authenticated/projects/$id/': typeof AuthenticatedProjectsIdIndexRoute
 }
 export interface FileRouteTypes {
@@ -130,6 +140,7 @@ export interface FileRouteTypes {
     | '/projects/'
     | '/projects/$id/features'
     | '/projects/$id/roadmap'
+    | '/projects/$id/tasks'
     | '/projects/$id/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -142,6 +153,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/projects/$id/features'
     | '/projects/$id/roadmap'
+    | '/projects/$id/tasks'
     | '/projects/$id'
   id:
     | '__root__'
@@ -155,6 +167,7 @@ export interface FileRouteTypes {
     | '/_authenticated/projects/'
     | '/_authenticated/projects/$id/features'
     | '/_authenticated/projects/$id/roadmap'
+    | '/_authenticated/projects/$id/tasks'
     | '/_authenticated/projects/$id/'
   fileRoutesById: FileRoutesById
 }
@@ -244,6 +257,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedProjectsIdRoadmapRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/projects/$id/tasks': {
+      id: '/_authenticated/projects/$id/tasks'
+      path: '/projects/$id/tasks'
+      fullPath: '/projects/$id/tasks'
+      preLoaderRoute: typeof AuthenticatedProjectsIdTasksRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
@@ -254,6 +274,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedProjectsIndexRoute: typeof AuthenticatedProjectsIndexRoute
   AuthenticatedProjectsIdFeaturesRoute: typeof AuthenticatedProjectsIdFeaturesRoute
   AuthenticatedProjectsIdRoadmapRoute: typeof AuthenticatedProjectsIdRoadmapRoute
+  AuthenticatedProjectsIdTasksRoute: typeof AuthenticatedProjectsIdTasksRoute
   AuthenticatedProjectsIdIndexRoute: typeof AuthenticatedProjectsIdIndexRoute
 }
 
@@ -264,6 +285,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedProjectsIndexRoute: AuthenticatedProjectsIndexRoute,
   AuthenticatedProjectsIdFeaturesRoute: AuthenticatedProjectsIdFeaturesRoute,
   AuthenticatedProjectsIdRoadmapRoute: AuthenticatedProjectsIdRoadmapRoute,
+  AuthenticatedProjectsIdTasksRoute: AuthenticatedProjectsIdTasksRoute,
   AuthenticatedProjectsIdIndexRoute: AuthenticatedProjectsIdIndexRoute,
 }
 
