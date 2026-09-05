@@ -16,10 +16,12 @@ import { Route as SignupRouteImport } from './routes/signup'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedGenerateRouteImport } from './routes/_authenticated/generate'
 import { Route as AuthenticatedOnboardingRouteImport } from './routes/_authenticated/onboarding'
+import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
 import { Route as AuthenticatedProjectsIndexRouteImport } from './routes/_authenticated/projects.index'
 import { Route as AuthenticatedProjectsIdIndexRouteImport } from './routes/_authenticated/projects.$id.index'
 import { Route as AuthenticatedProjectsIdCodeRouteImport } from './routes/_authenticated/projects.$id.code'
 import { Route as AuthenticatedProjectsIdFeaturesRouteImport } from './routes/_authenticated/projects.$id.features'
+import { Route as AuthenticatedProjectsIdHealthRouteImport } from './routes/_authenticated/projects.$id.health'
 import { Route as AuthenticatedProjectsIdMentorRouteImport } from './routes/_authenticated/projects.$id.mentor'
 import { Route as AuthenticatedProjectsIdRoadmapRouteImport } from './routes/_authenticated/projects.$id.roadmap'
 import { Route as AuthenticatedProjectsIdTasksRouteImport } from './routes/_authenticated/projects.$id.tasks'
@@ -58,6 +60,11 @@ const AuthenticatedOnboardingRoute = AuthenticatedOnboardingRouteImport.update({
   path: '/onboarding',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedProjectsIndexRoute =
   AuthenticatedProjectsIndexRouteImport.update({
     id: '/projects/',
@@ -80,6 +87,12 @@ const AuthenticatedProjectsIdFeaturesRoute =
   AuthenticatedProjectsIdFeaturesRouteImport.update({
     id: '/projects/$id/features',
     path: '/projects/$id/features',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedProjectsIdHealthRoute =
+  AuthenticatedProjectsIdHealthRouteImport.update({
+    id: '/projects/$id/health',
+    path: '/projects/$id/health',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedProjectsIdMentorRoute =
@@ -108,9 +121,11 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/generate': typeof AuthenticatedGenerateRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
+  '/profile': typeof AuthenticatedProfileRoute
   '/projects/': typeof AuthenticatedProjectsIndexRoute
   '/projects/$id/code': typeof AuthenticatedProjectsIdCodeRoute
   '/projects/$id/features': typeof AuthenticatedProjectsIdFeaturesRoute
+  '/projects/$id/health': typeof AuthenticatedProjectsIdHealthRoute
   '/projects/$id/mentor': typeof AuthenticatedProjectsIdMentorRoute
   '/projects/$id/roadmap': typeof AuthenticatedProjectsIdRoadmapRoute
   '/projects/$id/tasks': typeof AuthenticatedProjectsIdTasksRoute
@@ -123,9 +138,11 @@ export interface FileRoutesByTo {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/generate': typeof AuthenticatedGenerateRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
+  '/profile': typeof AuthenticatedProfileRoute
   '/projects': typeof AuthenticatedProjectsIndexRoute
   '/projects/$id/code': typeof AuthenticatedProjectsIdCodeRoute
   '/projects/$id/features': typeof AuthenticatedProjectsIdFeaturesRoute
+  '/projects/$id/health': typeof AuthenticatedProjectsIdHealthRoute
   '/projects/$id/mentor': typeof AuthenticatedProjectsIdMentorRoute
   '/projects/$id/roadmap': typeof AuthenticatedProjectsIdRoadmapRoute
   '/projects/$id/tasks': typeof AuthenticatedProjectsIdTasksRoute
@@ -140,9 +157,11 @@ export interface FileRoutesById {
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/generate': typeof AuthenticatedGenerateRoute
   '/_authenticated/onboarding': typeof AuthenticatedOnboardingRoute
+  '/_authenticated/profile': typeof AuthenticatedProfileRoute
   '/_authenticated/projects/': typeof AuthenticatedProjectsIndexRoute
   '/_authenticated/projects/$id/code': typeof AuthenticatedProjectsIdCodeRoute
   '/_authenticated/projects/$id/features': typeof AuthenticatedProjectsIdFeaturesRoute
+  '/_authenticated/projects/$id/health': typeof AuthenticatedProjectsIdHealthRoute
   '/_authenticated/projects/$id/mentor': typeof AuthenticatedProjectsIdMentorRoute
   '/_authenticated/projects/$id/roadmap': typeof AuthenticatedProjectsIdRoadmapRoute
   '/_authenticated/projects/$id/tasks': typeof AuthenticatedProjectsIdTasksRoute
@@ -157,9 +176,11 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/generate'
     | '/onboarding'
+    | '/profile'
     | '/projects/'
     | '/projects/$id/code'
     | '/projects/$id/features'
+    | '/projects/$id/health'
     | '/projects/$id/mentor'
     | '/projects/$id/roadmap'
     | '/projects/$id/tasks'
@@ -172,9 +193,11 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/generate'
     | '/onboarding'
+    | '/profile'
     | '/projects'
     | '/projects/$id/code'
     | '/projects/$id/features'
+    | '/projects/$id/health'
     | '/projects/$id/mentor'
     | '/projects/$id/roadmap'
     | '/projects/$id/tasks'
@@ -188,9 +211,11 @@ export interface FileRouteTypes {
     | '/_authenticated/dashboard'
     | '/_authenticated/generate'
     | '/_authenticated/onboarding'
+    | '/_authenticated/profile'
     | '/_authenticated/projects/'
     | '/_authenticated/projects/$id/code'
     | '/_authenticated/projects/$id/features'
+    | '/_authenticated/projects/$id/health'
     | '/_authenticated/projects/$id/mentor'
     | '/_authenticated/projects/$id/roadmap'
     | '/_authenticated/projects/$id/tasks'
@@ -255,6 +280,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedOnboardingRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/profile': {
+      id: '/_authenticated/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof AuthenticatedProfileRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/projects/': {
       id: '/_authenticated/projects/'
       path: '/projects'
@@ -281,6 +313,13 @@ declare module '@tanstack/react-router' {
       path: '/projects/$id/features'
       fullPath: '/projects/$id/features'
       preLoaderRoute: typeof AuthenticatedProjectsIdFeaturesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/projects/$id/health': {
+      id: '/_authenticated/projects/$id/health'
+      path: '/projects/$id/health'
+      fullPath: '/projects/$id/health'
+      preLoaderRoute: typeof AuthenticatedProjectsIdHealthRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/projects/$id/mentor': {
@@ -311,9 +350,11 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedGenerateRoute: typeof AuthenticatedGenerateRoute
   AuthenticatedOnboardingRoute: typeof AuthenticatedOnboardingRoute
+  AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
   AuthenticatedProjectsIndexRoute: typeof AuthenticatedProjectsIndexRoute
   AuthenticatedProjectsIdCodeRoute: typeof AuthenticatedProjectsIdCodeRoute
   AuthenticatedProjectsIdFeaturesRoute: typeof AuthenticatedProjectsIdFeaturesRoute
+  AuthenticatedProjectsIdHealthRoute: typeof AuthenticatedProjectsIdHealthRoute
   AuthenticatedProjectsIdMentorRoute: typeof AuthenticatedProjectsIdMentorRoute
   AuthenticatedProjectsIdRoadmapRoute: typeof AuthenticatedProjectsIdRoadmapRoute
   AuthenticatedProjectsIdTasksRoute: typeof AuthenticatedProjectsIdTasksRoute
@@ -324,9 +365,11 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedGenerateRoute: AuthenticatedGenerateRoute,
   AuthenticatedOnboardingRoute: AuthenticatedOnboardingRoute,
+  AuthenticatedProfileRoute: AuthenticatedProfileRoute,
   AuthenticatedProjectsIndexRoute: AuthenticatedProjectsIndexRoute,
   AuthenticatedProjectsIdCodeRoute: AuthenticatedProjectsIdCodeRoute,
   AuthenticatedProjectsIdFeaturesRoute: AuthenticatedProjectsIdFeaturesRoute,
+  AuthenticatedProjectsIdHealthRoute: AuthenticatedProjectsIdHealthRoute,
   AuthenticatedProjectsIdMentorRoute: AuthenticatedProjectsIdMentorRoute,
   AuthenticatedProjectsIdRoadmapRoute: AuthenticatedProjectsIdRoadmapRoute,
   AuthenticatedProjectsIdTasksRoute: AuthenticatedProjectsIdTasksRoute,
